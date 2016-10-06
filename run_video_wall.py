@@ -232,7 +232,7 @@ def main(argv):
     global stard,addinfo,w0,h0,frate,outmov,dh,dm,dpi,nproc,span,cadence,minweek,sdir
     global dayarraya,objelist,eventobj
     #arugments the prgram to read
-    inargs1 = 'hd:i:w:h:r:m:lh:lm:d:p:s:c:'
+    inargs1 = 'hf:i:w:h:r:m:lh:lm:d:p:s:c:'
     snargs1 = inargs1[1:].split(':')
     inargs2 = ["sdir","addinfo","width","height","frate","outmov","laghour","lagmin","dpi","nproc","span","caden"]
     helpinfo = "run_video_wall.py is a program that creates a movie using solar AIA 193\n"
@@ -252,7 +252,7 @@ def main(argv):
                "Width of the image and created movie in pixels (Default ={0:5d})".format(w0),
                "Height of the image and created movie in pixels (Default ={0:5d})".format(h0),
                "Frame rate of the output movie (Default ={0:2d})".format(frate),
-               "Output movie filename (do not add extension) (Default = {0}".format(outmov),
+               "Output movie filename (do not add extension) (Default = {0})".format(outmov),
                "Lag time between the current UTC time and the output movie time in UTC in hours (Default ={0:5.2f})".format(dh),
                "Lag time between the current UTC time and the output movie time in UTC in minutes (Default ={0:5.2f})".format(dm),
                "Dots per inch in the created images (Default ={0:3d})".format(dpi),
@@ -268,7 +268,7 @@ def main(argv):
     except getop.GetoptError:
         print helpinfo
         sys.exit(2)
-    inargs1 = 'hd:i:w:h:r:m:lh:lm:d:p:s:c:'
+    inargs1 = 'hf:i:w:h:r:m:lh:lm:d:p:s:c:'
     snargs1 = inargs1[1:].split(':')
     inargs2 = ["sdir","addinfo","width","height","frate","outmov","laghour","lagmin","dpi","nproc","span","caden"]
 
@@ -277,8 +277,9 @@ def main(argv):
         if opt == '-h':
             print helpinfo
             sys.exit()
-        elif opt in ("-d","--sdir"):
-            sdir = arg
+        elif opt in ("-f","--sdir"):
+            sdir  = str(arg)
+            stard = str(arg)
         elif opt in ("-i","--addinfo"):
             addinfo = arg
             if addinfo.upper() == 'FALSE':
